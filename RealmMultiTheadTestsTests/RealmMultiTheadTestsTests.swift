@@ -30,13 +30,6 @@ class RealmMultiTheadTestsTests: XCTestCase {
     XCTAssert(true, "Pass")
   }
 
-  func testPerformanceExample() {
-    // This is an example of a performance test case.
-    self.measureBlock() {
-      // Put the code you want to measure the time of here.
-    }
-  }
-
   func deleteRealmFilesAtPath(path: String) {
     let fileManager = NSFileManager.defaultManager()
     fileManager.removeItemAtPath(path, error: nil)
