@@ -26,8 +26,63 @@ class RealmMultiTheadTestsTests: XCTestCase {
   }
 
   func testExample() {
-    // This is an example of a functional test case.
-    XCTAssert(true, "Pass")
+    let condition = NSCondition()
+    let loaded = expectationWithDescription("upload")
+
+    // Load and Delete
+    let loadQueue = dispatch_queue_create("load", DISPATCH_QUEUE_SERIAL)
+    var isFinish = false
+    var dogsCount = 0
+    dispatch_async(loadQueue) {
+      let realm = Realm()
+      while true {
+        let dogs = realm.objects(Dog)
+        if dogs.count == 0 {
+          if isFinish {
+            break
+          } else {
+            condition.lock()
+            condition.waitUntilDate(NSDate(timeIntervalSinceNow: 1))
+            condition.unlock()
+            continue
+          }
+        }
+
+        dogsCount += dogs.count
+        realm.write {
+          realm.delete(dogs)
+        }
+      }
+      loaded.fulfill()
+    }
+
+    // Insert
+    let insertQueue = dispatch_queue_create("insert", DISPATCH_QUEUE_SERIAL)
+    for i in 1...100 {
+      dispatch_async(insertQueue) {
+        let dog = Dog()
+        dog.name = "dog \(i)"
+
+        let realm = Realm()
+        realm.write {
+          realm.add(dog)
+        }
+        condition.lock()
+        condition.signal()
+        condition.unlock()
+      }
+    }
+
+    // Wait
+    sleep(3)
+    isFinish = true
+    waitForExpectationsWithTimeout(1) { error in }
+
+    // Assert
+    XCTAssertEqual(100, dogsCount, "")
+
+    let dogs = Realm().objects(Dog)
+    XCTAssertEqual(0, dogs.count, "")
   }
 
   func deleteRealmFilesAtPath(path: String) {
