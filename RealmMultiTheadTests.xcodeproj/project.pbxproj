@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C45B6861B0702A200D3ED78 /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C45B6851B0702A200D3ED78 /* Dog.swift */; };
 		2C8AC53D1B06FCB600C0C2DD /* RealmMultiTheadTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C8AC53C1B06FCB600C0C2DD /* RealmMultiTheadTests.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2C8AC5431B06FCB600C0C2DD /* RealmMultiTheadTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8AC5371B06FCB600C0C2DD /* RealmMultiTheadTests.framework */; };
 		2C8AC54A1B06FCB600C0C2DD /* RealmMultiTheadTestsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8AC5491B06FCB600C0C2DD /* RealmMultiTheadTestsTests.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C45B6851B0702A200D3ED78 /* Dog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dog.swift; sourceTree = "<group>"; };
 		2C8AC5371B06FCB600C0C2DD /* RealmMultiTheadTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RealmMultiTheadTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C8AC53B1B06FCB600C0C2DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C8AC53C1B06FCB600C0C2DD /* RealmMultiTheadTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealmMultiTheadTests.h; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			children = (
 				2C8AC5491B06FCB600C0C2DD /* RealmMultiTheadTestsTests.swift */,
 				2C8AC5471B06FCB600C0C2DD /* Supporting Files */,
+				2C45B6851B0702A200D3ED78 /* Dog.swift */,
 			);
 			path = RealmMultiTheadTestsTests;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C45B6861B0702A200D3ED78 /* Dog.swift in Sources */,
 				2C8AC54A1B06FCB600C0C2DD /* RealmMultiTheadTestsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
