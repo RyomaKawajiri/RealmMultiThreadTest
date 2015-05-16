@@ -8,29 +8,39 @@
 
 import UIKit
 import XCTest
+import RealmSwift
 
 class RealmMultiTheadTestsTests: XCTestCase {
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+
+  let realmPathForTesting = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0].stringByAppendingPathComponent("RealmPathForSensorLogExtractorTests")
+
+  override func setUp() {
+    super.setUp()
+    deleteRealmFilesAtPath(realmPathForTesting)
+    Realm.defaultPath = realmPathForTesting
+  }
+
+  override func tearDown() {
+    deleteRealmFilesAtPath(realmPathForTesting)
+    super.tearDown()
+  }
+
+  func testExample() {
+    // This is an example of a functional test case.
+    XCTAssert(true, "Pass")
+  }
+
+  func testPerformanceExample() {
+    // This is an example of a performance test case.
+    self.measureBlock() {
+      // Put the code you want to measure the time of here.
     }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
+  }
+
+  func deleteRealmFilesAtPath(path: String) {
+    let fileManager = NSFileManager.defaultManager()
+    fileManager.removeItemAtPath(path, error: nil)
+    let lockPath = path + ".lock"
+    fileManager.removeItemAtPath(lockPath, error: nil)
+  }
 }
