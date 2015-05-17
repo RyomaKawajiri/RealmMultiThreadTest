@@ -36,6 +36,7 @@ class RealmMultiTheadTestsTests: XCTestCase {
     dispatch_async(loadQueue) {
       let realm = Realm()
       while true {
+        realm.refresh()
         let dogs = realm.objects(Dog)
         if dogs.count == 0 {
           if isFinish {
@@ -48,8 +49,8 @@ class RealmMultiTheadTestsTests: XCTestCase {
           }
         }
 
-        dogsCount += dogs.count
         realm.write {
+          dogsCount += dogs.count
           realm.delete(dogs)
         }
       }
